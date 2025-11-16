@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Agnovat Analyst Backend Server
+  agnovat-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agnovat-analyst
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=False
+      - LOG_LEVEL=INFO
+      - ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8000
+    volumes:
+      # Mount for document processing (optional - for accessing PDFs)
+      - ${DOCUMENTS_PATH:-./documents}:/data:ro
+      # Mount for logs (optional)
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - agnovat-network
+
+  # Optional: Nginx reverse proxy for production
+  # Uncomment if you want HTTPS and production features
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: agnovat-nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - agnovat-backend
+  #   networks:
+  #     - agnovat-network
+
+networks:
+  agnovat-network:
+    driver: bridge
+
+volumes:
+  logs:

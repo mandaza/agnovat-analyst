@@ -1,0 +1,84 @@
+version: '3.8'
+
+# Production overrides for docker-compose.yml
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.production.yml up -d
+
+services:
+  agnovat-backend:
+    # Production-specific environment variables
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=False
+      - LOG_LEVEL=INFO
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-https://your-domain.com}
+      - BIAS_DETECTION_THRESHOLD=0.6
+      - TEMPLATE_SIMILARITY_THRESHOLD=0.8
+
+    # Load environment from .env.production file
+    env_file:
+      - .env.production
+
+    # Resource limits for production
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+    # Restart policy
+    restart: always
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+        labels: "production"
+
+    # Health check (more frequent in production)
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    # Read-only root filesystem (except for /tmp and /app/logs)
+    read_only: true
+    tmpfs:
+      - /tmp
+
+    # Production volume mounts
+    volumes:
+      # Documents directory (read-only)
+      - ${DOCUMENTS_PATH:-./documents}:/data:ro
+      # Logs directory (writable)
+      - ./logs:/app/logs
+      # Cache directory for spaCy models
+      - spacy_cache:/home/agnovat/.cache
+
+    # Network mode for production
+    networks:
+      - agnovat-network
+
+# Named volumes
+volumes:
+  spacy_cache:
+    driver: local
+
+# Production network configuration
+networks:
+  agnovat-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

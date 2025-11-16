@@ -1,0 +1,75 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation (not needed in container)
+docs/
+*.md
+!README.md
+
+# Config files (use environment variables instead)
+.env
+.env.local
+claude_desktop_config.json
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Scripts (not needed in container)
+*.sh
+setup*.py
+
+# Test files
+tests/
+test_*.py
+
+# Temporary
+temp/
+tmp/
+*.tmp
+
+# MCP server (runs on host, not in container)
+mcp_server.py
+
+# Config examples
+configs/
