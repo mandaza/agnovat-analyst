@@ -1,0 +1,34 @@
+{
+  "cline.mcpServers": {
+    "agnovat-analyst": {
+      "url": "http://localhost:8000",
+      "type": "http",
+      "description": "Agnovat Analyst - 23 tools for QCAT guardianship analysis",
+      "tools": [
+        "extract-text",
+        "generate-hash",
+        "verify-integrity",
+        "extract-metadata",
+        "analyze-racism-bias",
+        "detect-inconsistencies",
+        "detect-template-reuse",
+        "detect-omitted-context",
+        "detect-non-evidence-based",
+        "extract-family-support",
+        "extract-pg-limitations",
+        "compare-documents",
+        "analyze-and-compare",
+        "extract-timeline",
+        "contradiction-matrix",
+        "human-rights-breaches",
+        "guardianship-risk-assessment",
+        "detect-state-guardianship-bias",
+        "professional-language-compliance",
+        "goals-guardianship-alignment",
+        "guardianship-argument",
+        "qcat-evidence-summary",
+        "qcat-bundle"
+      ]
+    }
+  }
+}

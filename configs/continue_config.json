@@ -1,0 +1,31 @@
+{
+  "models": [
+    {
+      "title": "Claude Sonnet",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "apiKey": "YOUR_API_KEY"
+    }
+  ],
+  "mcpServers": [
+    {
+      "name": "agnovat-analyst",
+      "url": "http://localhost:8000",
+      "description": "QCAT guardianship analysis tools",
+      "tools": ["all"],
+      "enabled": true
+    }
+  ],
+  "allowAnonymousTelemetry": false,
+  "docs": [],
+  "contextProviders": [
+    {
+      "name": "code",
+      "params": {}
+    },
+    {
+      "name": "diff",
+      "params": {}
+    }
+  ]
+}

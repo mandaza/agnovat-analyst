@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "agnovat-analyst"
+version = "1.0.0"
+description = "MCP Server for Document Integrity, Racism, Bias & Guardianship Alignment Analysis"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+license = "Proprietary"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+fastapi-mcp = "^0.1.0"
+uvicorn = {extras = ["standard"], version = "^0.32.0"}
+pydantic = "^2.10.0"
+pydantic-settings = "^2.6.0"
+python-multipart = "^0.0.12"
+
+# PDF Processing
+PyPDF2 = "^3.0.1"
+pdfplumber = "^0.11.4"
+python-docx = "^1.1.2"
+
+# NLP & AI
+spacy = "^3.8.2"
+transformers = "^4.46.0"
+torch = "^2.5.0"
+sentencepiece = "^0.2.0"
+
+# Document Analysis
+fuzzywuzzy = "^0.18.0"
+python-Levenshtein = "^0.26.0"
+difflib-data = "^1.0.0"
+
+# Template & Report Generation
+jinja2 = "^3.1.4"
+reportlab = "^4.2.5"
+
+# Utilities
+python-dotenv = "^1.0.1"
+loguru = "^0.7.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
+pytest-cov = "^6.0.0"
+black = "^24.10.0"
+ruff = "^0.7.4"
+mypy = "^1.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

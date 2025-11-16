@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+server.log
+nohup.out
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# SpaCy models (downloaded separately)
+# Keep the requirement in requirements.txt
+
+# Claude Desktop (user-specific)
+claude_desktop_config.json
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+.cache/
+
+# Documentation build
+docs/_build/
+site/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+# Uncomment if you don't want to track these
+# MILESTONE_*.md
+# IMPLEMENTATION_STATUS.md
